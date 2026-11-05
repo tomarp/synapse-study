@@ -2,8 +2,6 @@
 
 <h1 align="center">SYNAPSE study</h1>
 
-<p align="center"><em>SYnergistic Neurophysiological Assessment of Perception in Sensory Environments</em></p>
-
 <p align="center">
   <a href="https://doi.org/10.5281/zenodo.23458777"><img src="https://zenodo.org/badge/DOI/10.5281/zenodo.23458777.svg" alt="Dataset DOI"></a>
   <a href="https://doi.org/10.17504/protocols.io.m7vznm25rvx1/v1"><img src="https://img.shields.io/badge/protocol-protocols.io-4b9cd3" alt="Protocol"></a>
@@ -29,11 +27,11 @@ This repository is the home of the study: it brings together its code, publicati
 
 ## Resources
 
-| | |
-|---|---|
-| **Dataset** | Multimodal BIDS dataset, CC BY 4.0 — https://doi.org/10.5281/zenodo.23458777 |
-| **Protocol** | Step-by-step experimental procedure — https://doi.org/10.17504/protocols.io.m7vznm25rvx1/v1 |
-| **Experiment platform** | Browser software for the tasks and questionnaires — [synapse.ptomar.com](https://synapse.ptomar.com) · [source](https://github.com/tomarp/synapse-platform) · https://doi.org/10.5281/zenodo.23768060 |
+| Resource | Description | Link |
+|---|---|---|
+| Dataset | Multimodal dataset in BIDS format, CC BY 4.0 | https://doi.org/10.5281/zenodo.23458777 |
+| Protocol | Step-by-step experimental procedure | https://doi.org/10.17504/protocols.io.m7vznm25rvx1/v1 |
+| Experiment platform | Browser software for the tasks and questionnaires | [synapse.ptomar.com](https://synapse.ptomar.com) · [source code](https://github.com/tomarp/synapse-platform) · https://doi.org/10.5281/zenodo.23768060 |
 
 ## Publications
 
