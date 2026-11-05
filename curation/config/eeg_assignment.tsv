@@ -1,0 +1,26 @@
+source	window_start_local	window_end_local	participant_id	session_id	evidence_level	evidence
+eeg/MuseS/P01_eeg_data 2.csv	2025-06-23 00:00:00	2025-06-23 23:59:59	n/a	n/a	excluded	Pilot/test day (23 June 2025); no study session
+eeg/MuseS/P01_eeg_data.csv	2025-06-24 12:00:00	2025-06-24 12:30:00	n/a	n/a	excluded	Pre-session device test (12:12-12:13)
+muse/P01_eeg_data.csv	2025-06-24 12:40:00	2025-06-24 13:45:00	sub-P01	ses-A	investigator	Both concurrent G1-A files carry the stale ID 'P01' and start/end within 40 s of each other; assignment of the 'muse/' laptop to sub-P01 is by the investigator's fixed seat-device mapping (decision D09)
+eeg/MuseS/P01_eeg_data.csv	2025-06-24 12:40:00	2025-06-24 13:45:00	sub-P02	ses-A	investigator	Second concurrent G1-A headset (stale ID 'P01'); sub-P02 by the investigator's fixed seat-device mapping (decision D09)
+eeg/P01A_eeg_data_full_session.csv	2025-06-24 13:45:00	2025-06-24 14:45:00	sub-P01	ses-B	filename+time	File ID 'P01A' with stale session letter; recorded entirely within session B window (13:50-14:41)
+eeg/MuseS/P01_eeg_data.csv	2025-06-24 13:45:00	2025-06-24 14:45:00	sub-P02	ses-B	elimination+log	Second concurrent headset; recording gaps 14:18:17-14:22:31 and 14:29:03-14:30:28 coincide with logged 'P02 eeg restarted' at 14:22 and 14:30
+eeg/P03A_eeg_data_full_session.csv	2025-06-24 15:20:00	2025-06-24 16:25:00	sub-P03	ses-A	filename+time	File ID 'P03A'; ends 16:16 consistent with logged end of sub-P03 at 16:15
+eeg/MuseS/P01_eeg_data.csv	2025-06-24 15:20:00	2025-06-24 16:25:00	sub-P04	ses-A	elimination+log	Second concurrent headset (stale ID 'P01'); ends 16:19 consistent with logged session finish 16:20 after sub-P03
+eeg/MuseS/P01_eeg_data.csv	2025-06-24 16:30:00	2025-06-24 17:06:00	sub-P04	ses-B	elimination+log	Second concurrent headset before logged restart (17:06-17:08); after restart the same laptop wrote 'P04B' files
+eeg/MuseS/P04B_eeg_data.csv	2025-06-24 17:06:00	2025-06-24 17:25:00	sub-P04	ses-B	filename+time+log	File ID 'P04B' started 17:07:26 after logged restart
+muse/P03B_eeg_data.csv	2025-06-24 16:30:00	2025-06-24 17:25:00	sub-P03	ses-B	filename+time+log	File ID 'P03B'; gap 16:58-17:08 coincides with logged restart
+eeg/P05A_eeg_data_full_session.csv	2025-06-25 10:00:00	2025-06-25 11:20:00	sub-P05	ses-A	filename+time	File ID 'P05A'
+muse/P05A_eeg_data.csv	2025-06-25 10:00:00	2025-06-25 11:20:00	sub-P05	ses-A	filename+time	File ID 'P05A'
+eeg/P06A_eeg_data.csv	2025-06-25 10:00:00	2025-06-25 11:20:00	sub-P06	ses-A	filename+time+log	File ID 'P06A'; ends 11:16 matching logged end of sub-P06
+muse/P05B_eeg_data.csv	2025-06-25 11:25:00	2025-06-25 12:20:00	sub-P05	ses-B	filename+time	File ID 'P05B'; segment 12:32-12:34 lies after session end and is excluded by window
+eeg/P05B_eeg_data_full_session.csv	2025-06-25 11:25:00	2025-06-25 12:20:00	sub-P05	ses-B	filename+time	File ID 'P05B' (content outside window)
+eeg/P06B_eeg_data.csv	2025-06-25 11:25:00	2025-06-25 12:20:00	sub-P06	ses-B	filename+time	File ID 'P06B'
+eeg/P07A_eeg_data_full_session.csv	2025-06-25 12:30:00	2025-06-25 13:25:00	sub-P07	ses-A	filename+time	File ID 'P07A' (single participant)
+eeg/P07B_eeg_data_full_session.csv	2025-06-25 13:25:00	2025-06-25 14:15:00	sub-P07	ses-B	filename+time	File ID 'P07B' (single participant)
+eeg/P08A_eeg_data_full_session.csv	2025-06-25 15:00:00	2025-06-25 16:05:00	sub-P08	ses-A	filename+time+log	File ID 'P08A'; ends 15:56 vs logged finish of sub-P08 at 15:58
+eeg/P09A_eeg_data.csv	2025-06-25 15:00:00	2025-06-25 16:05:00	sub-P09	ses-A	filename+time+log	File ID 'P09A'; ends 16:00 vs logged finish of sub-P09 at 16:01
+eeg/P08B_eeg_data.csv	2025-06-25 16:10:00	2025-06-25 17:00:00	sub-P08	ses-B	filename+time	File ID 'P08B'
+eeg/P09B_eeg_data.csv	2025-06-25 16:10:00	2025-06-25 17:00:00	sub-P09	ses-B	filename+time	File ID 'P09B'
+eeg/P10A_eeg_data.csv	2025-06-26 12:55:00	2025-06-26 14:00:00	sub-P10	ses-A	filename+time	File ID 'P10A' (single participant)
+eeg/P10B_eeg_data_full_session.csv	2025-06-26 14:05:00	2025-06-26 15:00:00	sub-P10	ses-B	filename+time	File ID 'P10B' (single participant)

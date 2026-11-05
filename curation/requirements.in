@@ -1,0 +1,12 @@
+numpy
+pandas
+pyarrow
+scipy
+openpyxl
+pyyaml
+opencv-python-headless
+pillow
+matplotlib
+soundfile
+pybv
+pytest

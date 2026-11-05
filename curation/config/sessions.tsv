@@ -1,0 +1,21 @@
+participant_id	session_id	date	group	session_order	seat	co_tested_with	light	cct_logged_K	ui_theme_logged	sound_round1	sound_round2	log_start	log_end	log_end_raw	log_lines	log_notes	corrections
+sub-P01	ses-A	2025-06-24	G1	1	R	sub-P02	cool	6250	dark	people	traffic	12:50	13:38	13:38	4-14		
+sub-P02	ses-A	2025-06-24	G1	1	L	sub-P01	cool	6250	dark	people	traffic	12:52	13:38	13:38	4-14		
+sub-P01	ses-B	2025-06-24	G1	2	R	sub-P02	warm	2014	light	traffic	people	13:50	14:41	14:41	16-29	10-min break inside room	
+sub-P02	ses-B	2025-06-24	G1	2	L	sub-P01	warm	2014	light	people	traffic	13:50	14:41	14:41	16-29	operator interruptions during n-back 13:59:37 and 14:03; EEG restarted 14:22 and 14:30	
+sub-P03	ses-A	2025-06-24	G2	1	R	sub-P04	warm	2014	light	people	traffic	15:30	16:15	16:15	34-43	sub-P03 ended 16:15; session finished 16:20	
+sub-P04	ses-A	2025-06-24	G2	1	L	sub-P03	warm	2014	light	traffic	people	15:30	16:20	16:20	34-43		
+sub-P03	ses-B	2025-06-24	G2	2	R	sub-P04	cool	6250	dark	traffic	people	16:38	17:20	18:20	45-55	10-min break outside room; EEG of sub-P03 and sub-P04 restarted 17:06-17:08	log_end corrected 18:20->17:20 (D03)
+sub-P04	ses-B	2025-06-24	G2	2	L	sub-P03	cool	6250	dark	people	traffic	16:38	17:20	18:20	45-55		log_end corrected 18:20->17:20 (D03)
+sub-P05	ses-A	2025-06-25	G3	1	R	sub-P06	cool	6500	dark	people	traffic	10:12	11:04	11:04	58-71	thermal camera failure 10:18-10:36 (fixed); operator note on participant state (details restricted)	
+sub-P06	ses-A	2025-06-25	G3	1	L	sub-P05	cool	6500	dark	traffic	people	10:12	11:16	11:16	58-71	took a long time to complete n-back	
+sub-P05	ses-B	2025-06-25	G3	2	R	sub-P06	warm	n/a	light	traffic	people	11:30	12:16	12:16	73-82	10+ min break; participant left the room during the break	
+sub-P06	ses-B	2025-06-25	G3	2	L	sub-P05	warm	n/a	light	people	traffic	11:30	12:16	12:16	73-82	break: stayed in room	
+sub-P07	ses-A	2025-06-25	G4	1	R	n/a	warm	2000	light	people	traffic	12:34	13:20	13:20	85-94	wearable started late	
+sub-P07	ses-B	2025-06-25	G4	2	R	n/a	cool	n/a	n/a	traffic	people	13:32	14:08	14:08	96-105	10-min break; participant left room	
+sub-P08	ses-A	2025-06-25	G5	1	R	sub-P09	cool	n/a	n/a	people	traffic	15:07	15:58	15:58	108-118	sunny; daylight entering room	
+sub-P09	ses-A	2025-06-25	G5	1	L	sub-P08	cool	n/a	n/a	traffic	people	15:07	16:01	16:01	108-118	sunny; daylight entering room	
+sub-P08	ses-B	2025-06-25	G5	2	R	sub-P09	warm	n/a	n/a	traffic	people	16:15	16:56	16:56	120-128		
+sub-P09	ses-B	2025-06-25	G5	2	L	sub-P08	warm	n/a	n/a	people	traffic	16:15	16:56	16:56	120-128		
+sub-P10	ses-A	2025-06-26	G6	1	C	n/a	warm	n/a	n/a	traffic	people	13:04	13:55	13:55	131-141	sunny; no daylight entering room; 10-min break in room	
+sub-P10	ses-B	2025-06-26	G6	2	C	n/a	cool	n/a	n/a	people	traffic	14:11	14:54	14:54	143-150		

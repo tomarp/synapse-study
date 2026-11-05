@@ -1,0 +1,33 @@
+cff-version: 1.2.0
+message: "If you use this code, please cite the dataset and its Data Descriptor."
+type: software
+title: "SYNAPSE study code: dataset curation and technical validation"
+authors:
+  - family-names: Tomar
+    given-names: Puneet
+    orcid: "https://orcid.org/0000-0002-5168-5471"
+    affiliation: "University of Perugia; Technical University of Denmark"
+repository-code: "https://github.com/tomarp/synapse-study"
+license: MIT
+keywords:
+  - BIDS
+  - EEG
+  - indoor environmental quality
+  - data curation
+  - technical validation
+references:
+  - type: dataset
+    title: "SYNAPSE: cognitive performance, EEG, wrist physiology, facial thermography and indoor environment under warm and cool LED lighting and urban soundscapes"
+    authors:
+      - family-names: Tomar
+        given-names: Puneet
+      - family-names: Dave
+        given-names: Tanmay
+      - family-names: Wargocki
+        given-names: Pawel
+      - family-names: Pisello
+        given-names: Anna Laura
+    doi: "10.5281/zenodo.23458777"
+    publisher:
+      name: Zenodo
+    year: 2026

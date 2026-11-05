@@ -1,0 +1,5 @@
+# Paths are relative to this package (output/code/curation/). Override with SYNAPSE_<KEY> env vars.
+raw_root      = "../../../dataset/raw"             # raw data (read-only)
+platform_root = "../../platform"                 # experiment platform (task code, stimulus images)
+bids_root     = "../../dataset/SYNAPSE_dataset" # THE curated dataset (BIDS): analyse it; zip it and upload it
+work_root     = "../../../.cache/curation"         # rebuild cache (~1 GB, outside output/)

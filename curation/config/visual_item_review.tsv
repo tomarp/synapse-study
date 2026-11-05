@@ -1,0 +1,28 @@
+image	task	key_nominal	key_validity	rater_A_note
+bicycles_22.png	visualcount	22	ill_defined	bicycles recede into a recursive spiral; the number of bicycles in the spiral has no well-defined end
+bicycles_29.png	visualcount	29	ambiguous	bicycles carved on tree trunks; partial occlusion and faint background trunks make the count rater-dependent
+books_22.png	visualcount	22	ambiguous	building made of books; whether faces/spines of the same book count once or twice is undefined
+cubes_5.png	visualcount	5	ill_defined	nested cube frames recede recursively; the number of cubes depends on how many nesting levels are resolved
+gates_20.png	visualcount	20	ambiguous	arches ('gates') of an impossible cube; inner arches partly hidden; definition of 'gate' unclear
+pencils_15.png	visualcount	15	ambiguous	scaffold of pencils; many pencils are only partly visible
+rectangles_14.png	visualcount	14	ill_defined	concentric rectangular frames forming a tunnel; innermost frames unresolvable
+squares_15.png	visualcount	15	ambiguous	interlocking impossible cubes; whether faces or frames count as squares is undefined
+stairs_36.png	visualcount	36	ambiguous	unit ambiguity: steps vs flights (responses bimodal around 4 and ~30)
+stairs_65.png	visualcount	65	ambiguous	unit ambiguity (steps vs flights) and occluded steps
+stairs_90.png	visualcount	90	ill_defined	recursive staircase lattice; inner flights unresolvable
+triangles_10.png	visualcount	10	ambiguous	interlaced impossible triangles; overlapping regions create additional triangles
+triangles_30.png	visualcount	30	ambiguous	stained-glass Penrose triangle; small and compound triangles both countable
+image1_dif.jpeg	visualshape	DIFFERENT	nominal	
+image2_dif.jpeg	visualshape	DIFFERENT	duplicate_consistent	byte-identical to image14_dif.jpeg (same key)
+image3_same.jpeg	visualshape	SAME	indeterminate	byte-identical to image12_dif.jpeg with the opposite key; AI-rendered halves are not pixel-identical, so neither key can be verified
+image4_same.jpeg	visualshape	SAME	nominal	
+image5_same.jpeg	visualshape	SAME	nominal	
+image6_same.jpeg	visualshape	SAME	nominal	
+image7_dif.jpeg	visualshape	DIFFERENT	nominal	
+image8_dif.jpeg	visualshape	DIFFERENT	nominal	
+image9_dif.jpeg	visualshape	DIFFERENT	nominal	
+image10_same.jpeg	visualshape	SAME	nominal	
+image11_same.jpeg	visualshape	SAME	nominal	
+image12_dif.jpeg	visualshape	DIFFERENT	indeterminate	byte-identical to image3_same.jpeg with the opposite key
+image13_same.jpeg	visualshape	SAME	nominal	
+image14_dif.jpeg	visualshape	DIFFERENT	duplicate_consistent	byte-identical to image2_dif.jpeg (same key)

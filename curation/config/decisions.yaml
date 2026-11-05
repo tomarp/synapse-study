@@ -1,0 +1,144 @@
+# SYNAPSE curation — register of decisions and non-measured facts
+#
+# Every fact used by the curation that is NOT read directly from a raw data file is listed here with
+# its basis.  Basis vocabulary:
+#   investigator   stated by the principal investigator in the curation audit (2026-10-27)
+#   data-derived   inferred from the raw data by the documented method (evidence given)
+#   literature     taken from a cited publication or manufacturer documentation
+#   convention     a curation rule chosen by the curators (rationale given)
+#   unavailable    the information does not exist; it is reported as missing (never imputed)
+#
+# The dataset README and participants/sessions sidecars cite these IDs.
+
+D01_site:
+  value: "Field-lab (simulated office) at the Technical University of Denmark, Kongens Lyngby; 5.9 m x 2.9 m x 3.2 m, balanced mechanical ventilation, north-western window partially shaded"
+  basis: [investigator, literature]
+  evidence: "Investigator; room description from Dave et al., Build. Environ. 304 (2026) 115068, which used the same field-labs. The first-attempt README naming CIRIAF/Perugia as the site was an affiliation, not the test location."
+
+D02_pilot_day:
+  value: "23 June 2025 was a pilot/test day with different people; all its records (raw/pilot, 23-Jun rows in dataforms and surveys, LEAP Monday-Afternoon, EEG 'P01_eeg_data 2.csv', 24-Jun 12:12 EEG device test) are excluded and not distributed. Pilot IDs 'P01'/'P02' are recoded PILOT01/PILOT02 in the exclusion log."
+  basis: [investigator, data-derived]
+  evidence: "Investigator: different people. Data: dates; the operator log starts 24 June."
+
+D03_session_end_P03P04_B:
+  value: "Session ses-B of sub-P03 and sub-P04 ended 17:20 (logged '18:20'); the logged value is retained as log_end_raw."
+  basis: [data-derived]
+  evidence: "EEG of both headsets ends 17:20:08/17:20:10; T3 forms 17:19:48/17:19:55; last thermal snapshot 17:20:16; LEAP downloads 17:35-17:37; room CO2 decay from 17:50. A one-hour clock error is excluded because the same clocks agree with the log in all other sessions."
+
+D04_lighting:
+  value:
+    warm: {cct_setpoint_K: 2014}
+    cool: {cct_setpoint_K: 6250}
+  basis: [investigator, data-derived]
+  evidence: "Investigator: the two luminaire presets were fixed. Logged values: warm 2014 K (x2), 2000 K (x1); cool 6250 K (x2), 6500 K (x1). The more precise and more frequent values are taken as the setpoints; 2000/6500 K are treated as roundings (6500 K is also the luminaires' rated maximum). Values are luminaire setpoints; no eye-level or desk-level photometric/spectral measurement was made (see D05)."
+
+D05_photometry:
+  value: "Not measured (no illuminance, spectral or melanopic EDI measurement of either condition). The room monitor light channel (lux, AMS TCS34725, device at room centre) is distributed as an uncalibrated relative indicator only."
+  basis: [investigator, unavailable]
+
+D06_ui_theme:
+  value: "Platform colour theme followed the lighting condition: cool -> dark theme, warm -> light theme (all 20 sessions)."
+  basis: [investigator]
+  evidence: "Logged explicitly for sessions of groups G1-G3 and sub-P07/ses-A; stated by the investigator for sub-P07/ses-B to sub-P10/ses-B."
+
+D07_seating:
+  value: "In concurrently tested pairs the first-listed participant (sub-P01, sub-P03, sub-P05, sub-P08) sat at the wall-side seat (thermal image right, R) and the second (sub-P02, sub-P04, sub-P06, sub-P09) at the other seat (L). Seats were the same in both sessions of a pair."
+  basis: [investigator]
+  evidence: "Confirmed by the investigator from notes/photos (2026-10-27)."
+
+D08_participant_background:
+  value: "The pre-study background questionnaire (raw/ParticipantInformation.xlsx) has 9 responses for 10 participants and no participant code. Without an investigator-provided key, the responses cannot be linked to participants. Released: (i) aggregate sample description (n = 9 of 10) and (ii) an unlinked, generalised, row-shuffled table (sex, 5-year age band, education field, time in Denmark band, and categorical habits/preferences; no names, e-mail, city or free-text health). participants.tsv carries no sex/age columns, because no participant can be linked to a form; demographics are reported in aggregate only. Missing values are never imputed."
+  basis: [investigator, unavailable, convention]
+  evidence: "Investigator could not provide the key (confirmed 2026-10-29). Operator nicknames in two raw wearable folder names were not used as a sex record (not a self-report, covers 2 of 10). Release form chosen by investigator (C3a, C4a)."
+
+D09_eeg_assignment_G1A:
+  value: "In group G1 session ses-A, sub-P01 used the 'muse/' laptop/headset and sub-P02 the 'eeg/MuseS' laptop/headset (fixed seat-device mapping)."
+  basis: [investigator]
+  evidence: "Both files carry the stale ID 'P01'; recording times do not discriminate."
+
+D10_eeg_hardware:
+  value: "Interaxon Muse S headbands (4 dry EEG channels TP9, AF7, AF8, TP10; reference Fpz), acquired with BrainFlow (board MUSE_S_BOARD) by code/muse/muse-eeg.py on two laptops. Headset serial/MAC numbers, firmware and BrainFlow version were not recorded."
+  basis: [investigator, data-derived, unavailable]
+  evidence: "Device model stated by the investigator; channels, units and 256 Hz rate from the data and the acquisition script."
+
+D11_clock_synchronisation:
+  value: "Device clocks were not synchronised or checked during the study. Offsets are estimated post hoc (derivatives/quality_control/clock_checks.tsv) and NOT applied to the distributed timestamps."
+  basis: [investigator, data-derived]
+
+D12_eeg_partial_sessions:
+  value: "sub-P08/ses-B (EEG ends 16:48:03) and sub-P10/ses-A (EEG ends 13:44:25) are partial recordings; no backup exists."
+  basis: [investigator, data-derived]
+
+D13_wrist_placement:
+  value: "ActiGraph LEAP worn on the non-dominant wrist in both sessions."
+  basis: [investigator]
+
+D14_P06_wearable:
+  value: "sub-P06 wore a LEAP device but no data were retrieved (the unit that was available shows no recording 25 June 10:12-12:16). sub-P06 wearable data are missing and are NOT imputed or simulated."
+  basis: [investigator, data-derived]
+  rationale: "Imputing or simulating physiological time series would create data that were never measured; missingness is documented so that analyses can model it (e.g. mixed models use all available data)."
+
+D15_room_monitor:
+  value: "ATMOCUBE (Atmotube) multi-sensor monitor placed at the centre of the room between the two workstations. Units/sensors from manufacturer documentation: air temperature degC (Sensirion STS35), RH % (SHTC3), pressure hPa (DPS310), CO2 ppm (SCD41), PM1/2.5/4/10 ug/m3 (SPS30), TVOC ppm (SGP41 conversion), VOC/NOx index points (SGP41), light lux (AMS TCS34725), background sound level dB (Knowles SPH0641, 1-min; frequency weighting not stated), formaldehyde ppm (SFA30) — constant 0 throughout, not reported. 1-s readings averaged to 1-min records. Serial number, height and calibration date not recorded."
+  basis: [investigator, literature, data-derived]
+  evidence: "Investigator (placement); https://support.atmotube.com/en/articles/10450299 (retrieved 2026-10-27); Dave et al. 2026 (1-s readings averaged to 1 min, same field-labs)."
+
+D16_thermal_camera:
+  value: "FLIR AX8 on a fixed mount ~1.5 m from the participants; factory defaults emissivity 0.95, reflected temperature 20 degC. Recordings are rendered (non-radiometric) video and snapshots."
+  basis: [investigator, data-derived]
+
+D17_platform_configuration:
+  value: "The deployed platform build was not archived. The per-session task configuration (trials per n-back level, flanker trials per variant, Stroop paradigm) is reconstructed from the data and reported per session (sessions.tsv: cfg_* columns)."
+  basis: [investigator, data-derived]
+
+D18_shortened_configuration:
+  value: "Sessions with 20 n-back trials per level (sub-P06/ses-B, sub-P09/ses-A, sub-P09/ses-B) or 20 flanker trials per variant (sub-P05/ses-B and both sessions of sub-P07, sub-P08, sub-P10) were deliberately shortened by the operators to keep sessions within the time slot."
+  basis: [investigator]
+  evidence: "Data pattern (derivatives/quality_control/task_configuration.tsv): the change starts in G3 session B (25 June, after the longest session, sub-P06/ses-A) and is workstation-specific — wall-side seat R (sub-P05/ses-B, sub-P07, sub-P08, sub-P10): flanker 60 -> 20 trials per variant, n-back unchanged (60); seat L (sub-P06/ses-B, sub-P09): n-back 60 -> 20 trials per level, flanker unchanged (60). This is consistent with a deliberate per-laptop edit of the locally served platform."
+
+D19_soundscapes:
+  value: "Soundscapes were played from a separate device (not the task platform) over JBL Tune 770NC over-ear headphones with active noise cancellation. Presentation level was not measured in SYNAPSE; reference: the same cafeteria-babble recording through the same headphones measured 53.6 +/- 2.5 dB at the ear cup (Dave et al. 2026). The relative level of the two recordings is computed from the audio files (stimuli/soundscapes.json). The switch between soundscapes was not time-stamped; it occurred between the last response of round 1 and the first response of round 2 (interval given per session); whether T2 was answered with round-1 sound, round-2 sound or silence is undetermined."
+  basis: [investigator, literature, data-derived, unavailable]
+
+D20_stroop_design:
+  value: "Word Stroop: all trials incongruent (interference-only design), as intended. Emoji Stroop: the emoji and its congruency were not logged, so only the response colour, ink colour, accuracy and RT are available."
+  basis: [investigator, data-derived]
+
+D21_visual_task_keys:
+  value: "Counting and shape images were AI-generated; their answer keys are the generation targets encoded in the file names (nominal keys). Several counting images contain recursive/impossible geometry with no well-defined count, and two shape images are byte-identical with contradictory keys (image3_same = image12_dif). Nominal keys are retained; each item carries a key-validity rating and the trial tables add consensus-based scores (see stimuli/visual_items.tsv)."
+  basis: [data-derived, investigator]
+  evidence: "Single-rater item review by the curator (audit record), corroborated by the participants' response distributions (stimuli/visual_items.tsv). No second rater was available; the investigator accepted this form (2026-10-29). Analyses should rely on the consensus-based scores or on items rated nominal."
+
+D22_questionnaire_instruments:
+  value: "Deployed instruments are the three Google Forms embedded in the platform (definitions archived in raw/metadata/deployed_google_forms/, retrieved 2026-10-27): T0 pre-session form; T1 IEQ right-here-right-now form (5-point); T2/T3 form = task/affect items (9-point, except focus 7-point) + the T1 IEQ items. raw/metadata/*.md files are design drafts; RoutineSurvey.md and SubjectiveAssessment-1/2.md were not administered in SYNAPSE (no matching data)."
+  basis: [data-derived]
+  evidence: "Every response label in raw/surveys/*.csv occurs in the archived form options (tested)."
+
+D23_baseline:
+  value: "Baseline = 5-min eyes-open rest starting at T0 submission (platform page timer)."
+  basis: [investigator]
+
+D24_ethics:
+  value: "Procedure of the DTU field-lab studies (Dave et al. 2026): signed informed consent (copy to participant), consent covering EEG, wrist-device and thermal-camera recording and sharing of pseudonymised data; personal information pseudonymised under the GDPR at DTU; no Ethics Review Board approval was required."
+  basis: [investigator, literature]
+
+D25_incidental_findings:
+  value: "Vendor rhythm classifications (e.g. 'atrial_fibrillation', 'bradycardia') are incidental, non-diagnostic labels and are not distributed."
+  basis: [investigator]
+
+D26_restricted_material:
+  value: "Not deposited: raw thermal video/snapshots (faces), free-text operator log, raw health-screening answers, background free text, host names. Available on request under a data-use agreement."
+  basis: [investigator]
+
+D27_doi:
+  value: "10.5281/zenodo.23458777 (reserved by the investigator)"
+  basis: [investigator]
+
+D28_time_zone:
+  value: "All local times are Central European Summer Time (UTC+02:00, IANA Europe/Copenhagen). Distributed timestamps are ISO 8601 with explicit offset or Unix seconds (UTC)."
+  basis: [convention]
+
+D29_stimuli:
+  value: "Task images: AI-generated (Stroop and counting images: OpenAI GPT-4o via ChatGPT; shape images: Microsoft Designer Image Creator, 2025-06-18; read from the C2PA content credentials embedded in each file). They are distributed with the SYNAPSE experiment platform (doi:10.5281/zenodo.23768059; https://synapse.ptomar.com; media/images/), not with this dataset; stimuli/image_provenance.tsv and stimuli/visual_items.tsv identify every image by path and SHA-256. Soundscapes: the two recordings (People_Defi.wav, cafeteria babble; Road_Traffic_Noise.wav, road traffic) were taken from YouTube; the source videos were not recorded, so the audio cannot be redistributed and is distributed neither here nor with the platform. stimuli/soundscapes.json gives their SHA-256, format, duration, A-weighted level distribution, interaural level difference and 1/3-octave spectra; the platform ships noise substitutes with the same long-term spectrum, level and interaural level difference."
+  basis: [investigator, data-derived, unavailable]
+  evidence: "Investigator 2026-10-29: stimuli belong to the software platform; soundscapes downloaded from YouTube, source not remembered. C2PA manifests read from the image files."

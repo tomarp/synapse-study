@@ -1,0 +1,81 @@
+"""Column descriptions shared by BIDS sidecars and the data dictionary."""
+from __future__ import annotations
+
+COMMON_BEH = {
+    "trial_index": {"Description": "Row order within this file (1-based, server arrival order)"},
+    "run": {"Description": "Run of this block; a block restarted by the operator has several runs, the last one is analysable"},
+    "superseded_run": {"Description": "true if the row belongs to an earlier, restarted run (not analysable)",
+                       "Levels": {"true": "earlier restarted run", "false": "analysable run"}},
+    "round": {"Description": "Task round: 1 = before questionnaire T2, 2 = after T2", "Levels": {"1": "round 1", "2": "round 2"}},
+    "soundscape": {"Description": "Soundscape played over headphones during the round (decision D19)",
+                   "Levels": {"people": "binaural cafeteria babble (People_Defi.wav, see stimuli/soundscapes.json)", "traffic": "road traffic (Road_Traffic_Noise.wav, see stimuli/soundscapes.json)"}},
+    "response": {"Description": "Response given by the participant, as logged"},
+    "rt_ms": {"Description": "Reaction time measured in the browser (performance.now) from stimulus onset to response", "Units": "ms"},
+    "rt_flag": {"Description": "Plausibility flag (rows are not removed)",
+                "Levels": {"ok": "within the plausible range", "fast_lt150ms": "RT < 150 ms (anticipatory)", "slow_gt10s": "RT > 10 s", "slow_gt120s": "RT > 120 s"}},
+    "correct": {"Description": "Accuracy re-scored from the stimulus (curated; use this)", "Levels": {"1": "correct", "0": "error"}},
+    "correct_recorded": {"Description": "Accuracy as logged by the platform", "Levels": {"1": "correct", "0": "error"}},
+    "score_discrepancy": {"Description": "true if correct differs from correct_recorded"},
+    "submitted_time": {"Description": "Google-server receipt time of the response (ISO 8601, CEST; 1-s resolution, includes network latency)"},
+    "submitted_unix": {"Description": "submitted_time as Unix time", "Units": "s"},
+    "outside_logged_window": {"Description": "true if the response falls > 15 min outside the logged session window"},
+    "participant_id_raw": {"Description": "Participant ID as typed into the platform"},
+    "session_id_raw": {"Description": "Session letter as typed into the platform"},
+    "src_file": {"Description": "Source file in the raw archive"},
+    "src_row": {"Description": "Line number in the source file (header = line 1)"},
+}
+
+TASK_BEH = {
+    "nback": {
+        "level": {"Description": "n-back load (n)", "Levels": {"1": "1-back", "2": "2-back", "3": "3-back"}},
+        "trial": {"Description": "Trial number within the level, as logged"},
+        "stimulus": {"Description": "Letter or digit presented"},
+        "is_target": {"Description": "true if the stimulus equals the one presented n trials earlier (re-derived)"},
+        "rescore_status": {"Description": "How the target status was derived",
+                           "Levels": {"checked": "from the stimulus n trials back", "first_n_nontarget": "first n trials (cannot be targets)",
+                                      "uncheckable_missing_history": "preceding stimulus missing"}},
+    },
+    "stroop": {
+        "word": {"Description": "Word displayed"},
+        "ink_colour": {"Description": "Ink colour of the word (the correct response)"},
+        "congruent": {"Description": "true if the word names its ink colour (never the case: interference-only design, D20)"},
+        "word_is_colour_name": {"Description": "true if the word is a colour name"},
+        "emotional_valence": {"Description": "Valence category of the word (emotional-word Stroop of sub-P01/ses-A and sub-P02/ses-A only)"},
+    },
+    "visual": {
+        "image": {"Description": "Stimulus image file (experiment platform, media/images/visual_count or visual_shape; see stimuli/visual_items.tsv)"},
+        "question": {"Description": "Question shown with the image"},
+        "key_nominal": {"Description": "Answer key encoded in the image file name (AI-generation target; D21)"},
+        "key_validity": {"Description": "Validity rating of the nominal key (stimuli/visual_items.tsv)",
+                         "Levels": {"nominal": "no indication of error", "duplicate_consistent": "duplicate image, same key",
+                                    "indeterminate": "duplicate image with contradictory key", "ambiguous": "count depends on interpretation",
+                                    "ill_defined": "recursive/impossible geometry, no well-defined count"}},
+        "count_response": {"Description": "Numeric response (counting task)"},
+        "count_key_nominal": {"Description": "Nominal count (counting task)"},
+        "count_consensus_loo": {"Description": "Median response of all other participants to the same image (leave-one-participant-out consensus)"},
+        "count_log_ratio_nominal": {"Description": "ln(count_response / count_key_nominal)"},
+        "count_log_ratio_consensus": {"Description": "ln(count_response / count_consensus_loo); recommended accuracy measure for the counting task"},
+    },
+    "flanker": {
+        "stimulus": {"Description": "Five-element array displayed (centre element = target)"},
+        "target": {"Description": "Target element as logged"},
+        "condition": {"Description": "Flanker condition re-derived from the array",
+                      "Levels": {"Congruent": "flankers match the target (arrow direction or digit parity)",
+                                 "Incongruent": "flankers conflict with the target", "Neutral": "neutral flankers (+ or #)"}},
+        "condition_recorded": {"Description": "Condition as logged by the platform"},
+        "expected_response": {"Description": "Correct response re-derived from the centre element"},
+    },
+}
+
+TASK_INFO = {
+    "nbackletter": ("n-back (letters)", "Working memory: respond TARGET if the letter matches the one n trials back; levels 1-3 in sequence, page timer 5 min."),
+    "nbackdigit": ("n-back (digits)", "As nbackletter with digits."),
+    "stroopword": ("Colour-word Stroop", "Name the ink colour of a colour word (all trials incongruent)."),
+    "stroopemoji": ("Emoji Stroop", "Name the ink colour of a word shown with an emoji; emoji and its congruency were not logged (D20)."),
+    "stroopemotionalword": ("Emotional-word Stroop", "Name the ink colour of emotional (positive/negative/neutral) words; sessions sub-P01/ses-A and sub-P02/ses-A only."),
+    "stroopemotionalimage": ("Emotional-image Stroop", "Name the ink colour of word-symbol images (images distributed with the experiment platform); sessions sub-P01/ses-A and sub-P02/ses-A only."),
+    "visualcount": ("Visual counting", "Count objects in an AI-generated illusion image and type the number."),
+    "visualshape": ("Shape comparison", "Decide whether the two shapes in an image are the SAME or DIFFERENT."),
+    "flankerarrow": ("Arrow flanker", "Indicate the direction of the central arrow (Left/Right)."),
+    "flankerdigit": ("Digit flanker", "Indicate the parity of the central digit (Odd/Even)."),
+}
