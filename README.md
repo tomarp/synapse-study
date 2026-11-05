@@ -38,6 +38,7 @@ This repository is the home of the study: it brings together its code, publicati
 | Publication | Status | Code |
 |---|---|---|
 | Tomar, P., Dave, T., Wargocki, P. & Pisello, A. L. *Multimodal dataset of cognitive performance, physiology and indoor environment under lighting and soundscapes.* Data Descriptor. | submitted to *Scientific Data* | [`data_descriptor/`](data_descriptor/) |
+| Effects of lighting colour temperature and urban soundscapes on cognitive performance, perceived indoor environment and physiology | in preparation; [analysis plan](results_paper/ANALYSIS_PLAN.md) registered | [`results_paper/`](results_paper/) |
 
 ## Repository
 
@@ -45,6 +46,7 @@ This repository is the home of the study: it brings together its code, publicati
 |---|---|
 | [`curation/`](curation/) | Curation pipeline from the raw recordings to the published BIDS dataset, integrity tests and the register of curation decisions |
 | [`data_descriptor/`](data_descriptor/) | Technical validation: figures, tables and numbers of the Data Descriptor, reproducible from the published dataset |
+| [`results_paper/`](results_paper/) | Results paper (in preparation): registered analysis plan; the analysis code follows |
 | [`assets/`](assets/) | Study logo |
 
 Each folder has its own README with setup and usage.
