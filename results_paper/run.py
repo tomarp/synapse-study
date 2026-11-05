@@ -27,8 +27,9 @@ def main() -> None:
     print(f"{'UNBLINDED' if common.UNBLIND else 'BLIND'} run -> {common.PAPER}")
     analyses.run(a.only)
     if not a.no_figures and a.only is None:
-        from rp import figures
+        from rp import figures, report
         figures.run()
+        report.run()
 
 
 if __name__ == "__main__":

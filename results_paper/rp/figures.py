@@ -232,14 +232,63 @@ def fig_individual(res: pd.DataFrame) -> None:
             ax.plot([x.lo, x.hi], [i, i], color=col, lw=1)
             ax.plot(x["median"], i, "o", ms=3.2, mec=col, mfc=col if x.verdict == "credible" else "white", mew=0.9)
         sd = res[(res.outcome == "A1") & (res.analysis == "heterogeneity") & (res.term == ("sdL" if term == "bL" else "sdS"))].iloc[0]
-        ax.text(0.02, 0.02, f"between-participant SD {100 * sd['median']:.1f} %\n[{100 * sd.lo:.1f}, {100 * sd.hi:.1f}]",
-                transform=ax.transAxes, fontsize=5.2, va="bottom")
-        ax.set_yticks(range(len(p)), [s.replace("sub-", "") for s in p.participant_id])
+        tr = lambda v: 100 * (np.exp(v) - 1)                                   # noqa: E731
+        order = {x.participant_id: ("C→W" if x.light == "cool" else "W→C")
+                 for _, x in data.sessions_true()[lambda d: d.session_order == 1].iterrows()}
+        ax.set_yticks(range(len(p)), [f"{s.replace('sub-', '')} {order[s]}" for s in p.participant_id])
         ax.set_ylim(len(p) - 0.5, -0.5)
-        ax.set_xlabel("Change in response time (%)")
+        ax.set_xlabel("Change in response time (%)\n"
+                      f"between-participant SD {tr(sd['median']):.1f} % [{tr(sd.lo):.1f}, {tr(sd.hi):.1f}]")
         ax.set_title(lab, fontweight="normal", color=col)
-        panel(ax, letter, x=-0.2 if ax is axs[0] else -0.05)
+        panel(ax, letter, x=-0.3 if ax is axs[0] else -0.05)
     save(fig, "fig6_individual")
+
+
+def fig_graphical_abstract(res: pd.DataFrame) -> None:
+    """Graphical abstract (Elsevier: at least 1328 x 531 px)."""
+    fig, axs = plt.subplots(1, 3, figsize=(170 / 25.4, 68 / 25.4), constrained_layout=True,
+                            gridspec_kw=dict(width_ratios=[1.05, 1.1, 1.0]))
+    # a: average effects on response time
+    ax = axs[0]
+    r = res[(res.outcome == "A1") & (res.analysis == "primary") & res.term.isin(["bL", "bS"])].copy()
+    r["key"] = r.term
+    ax.axvspan(100 * (np.exp(-0.02) - 1), 100 * (np.exp(0.02) - 1), color="0.92", lw=0)
+    ax.axvline(0, color="0.4", lw=0.6)
+    for i, term in enumerate(["bL", "bS"]):
+        x = r[r.term == term].iloc[0]
+        ax.plot([x.lo, x.hi], [i, i], color=FACTOR[term][1], lw=2)
+        ax.plot(x["median"], i, "o", ms=6, mec=FACTOR[term][1], mfc="white", mew=1.5)
+    ax.set_yticks([0, 1], ["Cool vs warm\nlight", "Traffic vs\nbabble"])
+    ax.set_ylim(1.6, -0.6)
+    ax.set_xlabel("Response time (%)")
+    ax.set_title("No speed benefit of cool light;\nsound type made no difference", fontweight="bold", fontsize=7)
+    # b: individual lighting effects
+    ax = axs[1]
+    pe = pd.read_csv(GEN / "participant_effects_A1.tsv", sep="\t")
+    p = pe[pe.term == "bL"].sort_values("median").reset_index(drop=True)
+    ax.axvline(0, color="0.4", lw=0.6)
+    for i, x in p.iterrows():
+        ax.plot([x.lo, x.hi], [i, i], color=C["cool"], lw=1.2)
+        ax.plot(x["median"], i, "o", ms=4.5, mec=C["cool"], mfc=C["cool"] if x.verdict == "credible" else "white", mew=1.2)
+    ax.set_yticks([])
+    ax.set_xlabel("Response time, cool vs warm (%)")
+    ax.set_title("Large individual differences\n(one point per participant)", fontweight="bold", fontsize=7)
+    # c: dissatisfaction without and with a soundscape
+    ax = axs[2]
+    rr = data.ratings()
+    vals = []
+    for item in ("acoustic_satisfaction", "thermal_satisfaction"):
+        d = rr[rr["item"] == item]
+        vals.append((100 * (d[d.time == "T1"].value <= 2).mean(), 100 * (d[d.time != "T1"].value <= 2).mean()))
+    xx = np.arange(2)
+    ax.bar(xx - 0.18, [v[0] for v in vals], 0.34, color="0.75", label="silent baseline")
+    ax.bar(xx + 0.18, [v[1] for v in vals], 0.34, color=C["traffic"], label="working with a soundscape")
+    ax.set_xticks(xx, ["Acoustic", "Thermal"])
+    ax.set_ylabel("Dissatisfied (%)")
+    ax.set_ylim(0, 100)
+    ax.legend(loc="upper center", fontsize=5.5, ncol=1)
+    ax.set_title("Dissatisfaction rose from the silent\nbaseline to work with sound", fontweight="bold", fontsize=7)
+    save(fig, "graphical_abstract")
 
 
 # ----------------------------------------------------------------------------------------- supplementary
@@ -340,6 +389,7 @@ def run() -> None:
     fig_perception(res)
     fig_affect_physiology(res)
     fig_individual(res)
+    fig_graphical_abstract(res)
     fig_sensitivity(res)
     fig_ppc()
     tables(res)
