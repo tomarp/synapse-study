@@ -46,7 +46,7 @@ This repository is the home of the study: it brings together its code, publicati
 |---|---|
 | [`curation/`](curation/) | Curation pipeline from the raw recordings to the published BIDS dataset, integrity tests and the register of curation decisions |
 | [`data_descriptor/`](data_descriptor/) | Technical validation: figures, tables and numbers of the Data Descriptor, reproducible from the published dataset |
-| [`results_paper/`](results_paper/) | Results paper (in preparation): registered analysis plan; the analysis code follows |
+| [`results_paper/`](results_paper/) | Results paper (in preparation): registered analysis plan and the analysis code, frozen before unblinding |
 | [`assets/`](assets/) | Study logo |
 
 Each folder has its own README with setup and usage.
