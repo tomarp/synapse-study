@@ -19,7 +19,7 @@ keywords:
   - data curation
   - technical validation
 references:
-  - type: dataset
+  - type: data
     title: "SYNAPSE: cognitive performance, EEG, wrist physiology, facial thermography and indoor environment under warm and cool LED lighting and urban soundscapes"
     authors:
       - family-names: Tomar
@@ -34,3 +34,25 @@ references:
     publisher:
       name: Zenodo
     year: 2026
+preferred-citation:
+  type: data
+  title: "SYNAPSE: cognitive performance, EEG, wrist physiology, facial thermography and indoor environment under warm and cool LED lighting and urban soundscapes"
+  authors:
+    - family-names: Tomar
+      given-names: Puneet
+      orcid: "https://orcid.org/0000-0002-5168-5471"
+    - family-names: Dave
+      given-names: Tanmay
+      orcid: "https://orcid.org/0009-0004-1255-9140"
+    - family-names: Wargocki
+      given-names: Pawel
+      orcid: "https://orcid.org/0000-0003-3865-3560"
+    - family-names: Pisello
+      given-names: Anna Laura
+      orcid: "https://orcid.org/0000-0002-4527-6444"
+  doi: "10.5281/zenodo.23458777"
+  version: "1.0.0"
+  publisher:
+    name: Zenodo
+  year: 2026
+  license: CC-BY-4.0

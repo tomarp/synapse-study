@@ -1,4 +1,4 @@
-# synapse_curation — raw recordings → BIDS dataset
+# Data curation — raw recordings → BIDS dataset
 
 Reproducible curation of the SYNAPSE study (10 participants × 2 sessions, DTU field laboratory, 24–26 June 2025) from
 the read-only raw recordings into the published BIDS 1.10 dataset (https://doi.org/10.5281/zenodo.23458777). The raw
@@ -16,6 +16,16 @@ PY=.venv/bin/python SYNAPSE_RAW_ROOT=/path/to/raw SYNAPSE_BIDS_ROOT=/path/to/SYN
 Requirements: Python 3.12, `ffprobe` (thermal AVI metadata), `deno` (BIDS validator 3.0.2). Paths are set in
 `config/paths.toml` and can be overridden with `SYNAPSE_RAW_ROOT`, `SYNAPSE_BIDS_ROOT`, `SYNAPSE_WORK_ROOT`,
 `SYNAPSE_PLATFORM_ROOT`.
+
+## Checking the published dataset
+
+The integrity tests also run on the published dataset alone (complete layout, well-formed tables, physiological files
+matching their sidecars, valid decision identifiers); the tests that compare the dataset with the raw recordings are
+skipped when these are not available. With the environment created above (it includes pytest):
+
+```bash
+SYNAPSE_BIDS_ROOT=/path/to/SYNAPSE_dataset .venv/bin/python -m pytest tests
+```
 
 ## Inputs that are not raw data (all under `config/`)
 

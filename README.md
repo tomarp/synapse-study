@@ -1,117 +1,81 @@
-<p align="center"><img src="assets/SYNAPSE_logo.svg" alt="SYNAPSE study logo" width="220"></p>
+<p align="center"><img src="assets/SYNAPSE_logo.svg" alt="SYNAPSE study logo" width="200"></p>
 
-# SYNAPSE study
+<h1 align="center">SYNAPSE study</h1>
 
-*SYnergistic Neurophysiological Assessment of Perception in Sensory Environments*
+<p align="center"><em>SYnergistic Neurophysiological Assessment of Perception in Sensory Environments</em></p>
 
-SYNAPSE is a laboratory study of how the indoor environment affects people at work. Ten adults completed computerised
-cognitive tasks in 20 sessions in a simulated office at the Technical University of Denmark (June 2025) under warm or
-cool LED lighting and two urban soundscapes, while their cognitive performance, four-channel EEG, wrist physiology,
-facial thermography, perceived environment and the room conditions were recorded.
+<p align="center">
+  <a href="https://doi.org/10.5281/zenodo.23458777"><img src="https://zenodo.org/badge/DOI/10.5281/zenodo.23458777.svg" alt="Dataset DOI"></a>
+  <a href="https://doi.org/10.17504/protocols.io.m7vznm25rvx1/v1"><img src="https://img.shields.io/badge/protocol-protocols.io-4b9cd3" alt="Protocol"></a>
+  <a href="https://doi.org/10.5281/zenodo.23768060"><img src="https://img.shields.io/badge/software-SYNAPSE%20platform-6d5cf6" alt="Experiment platform"></a>
+  <a href="LICENSE"><img src="https://img.shields.io/badge/code-MIT-green" alt="Code licence: MIT"></a>
+</p>
 
-This repository is the home of the study. It holds the study's code, and its publications and further materials are
-added here as they become available.
+## About
+
+Occupants experience light, sound, heat and air at the same time, yet their combined effects on people are rarely
+studied together. SYNAPSE is a laboratory study of how the indoor environment relates to the cognitive performance,
+physiology and perception of people at work.
+
+- **Participants and setting:** ten adults, two sessions each (20 sessions), in a simulated office at the Technical
+  University of Denmark, June 2025.
+- **Conditions:** warm (2014 K) or cool (6250 K) LED lighting per session; two headphone soundscapes (cafeteria babble,
+  road traffic) per session; the thermal and air-quality conditions were monitored.
+- **Measures:** computerised cognitive tasks (n-back, Stroop, visual counting or shape comparison, flanker),
+  four-channel EEG, wrist photoplethysmography, acceleration and skin temperature, facial thermography, room conditions,
+  and questionnaires on alertness, affect, task experience and the perceived indoor environment.
+
+This repository is the home of the study: it brings together its code, publications and materials.
 
 ## Resources
 
-| Resource | Link |
+| | |
 |---|---|
-| Dataset (BIDS 1.10, CC BY 4.0) | https://doi.org/10.5281/zenodo.23458777 |
-| Experimental protocol | https://doi.org/10.17504/protocols.io.m7vznm25rvx1/v1 |
-| Experiment platform (task and questionnaire software) | https://github.com/tomarp/synapse-platform, https://doi.org/10.5281/zenodo.23768060 |
+| **Dataset** | Multimodal BIDS dataset, CC BY 4.0 — https://doi.org/10.5281/zenodo.23458777 |
+| **Protocol** | Step-by-step experimental procedure — https://doi.org/10.17504/protocols.io.m7vznm25rvx1/v1 |
+| **Experiment platform** | Browser software for the tasks and questionnaires — [synapse.ptomar.com](https://synapse.ptomar.com) · [source](https://github.com/tomarp/synapse-platform) · https://doi.org/10.5281/zenodo.23768060 |
 
 ## Publications
 
-| Publication | Status |
-|---|---|
-| Tomar, P., Dave, T., Wargocki, P. & Pisello, A. L. *Multimodal dataset of cognitive performance, physiology and indoor environment under lighting and soundscapes.* Data Descriptor. | submitted to *Scientific Data* |
-
-## Contents
-
-| Folder | Purpose | Needs |
+| Publication | Status | Code |
 |---|---|---|
-| [`curation/`](curation/README.md) | Curation pipeline: raw recordings → BIDS dataset (behaviour, EEG, wrist physiology, facial thermography, questionnaires, room data, session timeline, quality control), with integrity tests and the register of curation decisions | the raw recordings (restricted) |
-| `data_descriptor/` | Technical validation: the figures, tables and numbers of the Data Descriptor | the published dataset |
-| `assets/` | Study logo (SVG and PNG) | |
+| Tomar, P., Dave, T., Wargocki, P. & Pisello, A. L. *Multimodal dataset of cognitive performance, physiology and indoor environment under lighting and soundscapes.* Data Descriptor. | submitted to *Scientific Data* | [`data_descriptor/`](data_descriptor/) |
 
-Every number quoted in the Data Descriptor is computed by this code and written as a LaTeX macro, so that the text
-contains no hand-typed values.
+## Repository
 
-## Code
-
-### Setup
-
-Python 3.12.
-
-```bash
-python3.12 -m venv .venv
-.venv/bin/pip install -r data_descriptor/requirements.txt
-```
-
-The curation pipeline has its own locked environment (`curation/requirements.lock`) and needs `ffprobe` and `deno`.
-
-Paths default to the authors' project layout (`output/{code,dataset,platform,deliverables}`) and can be set
-with environment variables:
-
-| Variable | Meaning | Used by |
-|---|---|---|
-| `SYNAPSE_BIDS_ROOT` | unzipped dataset (`SYNAPSE_dataset/`) | `curation/`, `data_descriptor/` |
-| `SYNAPSE_DD_OUT` | output folder of the Data Descriptor figures and numbers | `data_descriptor/` |
-| `SYNAPSE_RAW_ROOT`, `SYNAPSE_WORK_ROOT` | raw recordings, cache | `curation/` |
-| `SYNAPSE_PLATFORM_ROOT` | clone of `synapse-platform` (task code and stimulus images) | `curation/` |
-
-### Reproducing the technical validation
-
-Download `SYNAPSE_dataset.zip` from the dataset record and unzip it.
-
-```bash
-cd data_descriptor
-SYNAPSE_BIDS_ROOT=/path/to/SYNAPSE_dataset SYNAPSE_DD_OUT=/path/to/output ../.venv/bin/python run.py
-```
-
-Figures are written to `<SYNAPSE_DD_OUT>/figures/` (PDF and PNG) and tables and numbers to
-`<SYNAPSE_DD_OUT>/generated/`. The EEG epoch quality is computed from the BrainVision files on the first run and cached;
-`--recompute-eeg` forces a new computation, and `--only fig1 fig5 tables` restricts the run to selected outputs. The
-modules in `data_descriptor/ddval/` read every stream of the dataset and can serve as examples of loading and aligning
-the data:
-
-| Module | Output |
+| Folder | Content |
 |---|---|
-| `fig_design.py` | Fig. 1, study design |
-| `fig_example.py` | Fig. 2, all streams of one session on the common timeline |
-| `fig_quality.py` | Fig. 3, completeness and quality per session |
-| `fig_behaviour.py` | Fig. 4, behavioural data |
-| `eeg.py`, `fig_eeg.py` | Fig. 5, EEG epoch quality and baseline spectra |
-| `physio.py`, `fig_physio.py` | Fig. 6, wrist and thermal validation (PPG-derived versus device heart rate; reconstructed versus spot temperature) |
-| `fig_environment.py` | Fig. 7, room conditions and perceived-environment ratings |
-| `tables.py` | Tables 1–3 |
+| [`curation/`](curation/) | Curation pipeline from the raw recordings to the published BIDS dataset, integrity tests and the register of curation decisions |
+| [`data_descriptor/`](data_descriptor/) | Technical validation: figures, tables and numbers of the Data Descriptor, reproducible from the published dataset |
+| [`assets/`](assets/) | Study logo |
 
-### Checking the dataset
+Each folder has its own README with setup and usage.
 
-`curation/tests/` checks the integrity of the published dataset (complete layout, well-formed tables, physiological
-files matching their sidecars, valid decision identifiers):
+## How to cite
 
-```bash
-.venv/bin/pip install pytest
-SYNAPSE_BIDS_ROOT=/path/to/SYNAPSE_dataset .venv/bin/python -m pytest curation/tests
-```
+Please cite the dataset and, once published, the Data Descriptor:
 
-The tests that compare the dataset with the raw recordings are skipped when these are not available.
+> Tomar, P., Dave, T., Wargocki, P. & Pisello, A. L. (2026). *SYNAPSE: cognitive performance, EEG, wrist physiology,
+> facial thermography and indoor environment under warm and cool LED lighting and urban soundscapes* (Version 1.0.0)
+> [Data set]. Zenodo. https://doi.org/10.5281/zenodo.23458777
 
-### Rebuilding the dataset
+Machine-readable citation metadata: [`CITATION.cff`](CITATION.cff).
 
-The curation pipeline documents every step from the raw recordings to the published dataset; see
-[`curation/README.md`](curation/README.md) for the steps, the configuration files and the principles applied. Every
-non-measured value and every correction is recorded with its basis in
-[`curation/config/decisions.yaml`](curation/config/decisions.yaml), which is also distributed with the dataset.
+## Team
 
-## Citation
+Puneet Tomar<sup>1,2</sup> ([ORCID](https://orcid.org/0000-0002-5168-5471)) · Tanmay Dave<sup>2</sup>
+([ORCID](https://orcid.org/0009-0004-1255-9140)) · Pawel Wargocki<sup>2</sup>
+([ORCID](https://orcid.org/0000-0003-3865-3560)) · Anna Laura Pisello<sup>1</sup>
+([ORCID](https://orcid.org/0000-0002-4527-6444))
 
-If you use material from this repository, please cite the Data Descriptor and the dataset (see `CITATION.cff`).
+<sup>1</sup> Environmental Applied Physics Lab at CIRIAF, Department of Engineering, University of Perugia, Italy ·
+<sup>2</sup> Department of Environmental and Resource Engineering, Technical University of Denmark, Denmark
+
+Questions and issues: please open a [GitHub issue](https://github.com/tomarp/synapse-study/issues).
 
 ## Licence
 
-Code: MIT (see `LICENSE`). Study logo (`assets/`): CC BY 4.0. The dataset is licensed separately under CC BY 4.0.
+Code: MIT ([`LICENSE`](LICENSE)). Study logo: CC BY 4.0. The dataset is licensed separately under CC BY 4.0.
 
 ## Funding
 
