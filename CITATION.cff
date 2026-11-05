@@ -1,18 +1,21 @@
 cff-version: 1.2.0
-message: "If you use this code, please cite the dataset and its Data Descriptor."
+message: "If you use material from this repository, please cite the dataset and its Data Descriptor."
 type: software
-title: "SYNAPSE study code: dataset curation and technical validation"
+title: "SYNAPSE study: code and materials"
 authors:
   - family-names: Tomar
     given-names: Puneet
     orcid: "https://orcid.org/0000-0002-5168-5471"
-    affiliation: "University of Perugia; Technical University of Denmark"
+    affiliation: "Environmental Applied Physics Lab at CIRIAF, Department of Engineering, University of Perugia; Department of Environmental and Resource Engineering, Technical University of Denmark"
 repository-code: "https://github.com/tomarp/synapse-study"
 license: MIT
 keywords:
+  - indoor environmental quality
+  - lighting
+  - soundscapes
+  - cognitive performance
   - BIDS
   - EEG
-  - indoor environmental quality
   - data curation
   - technical validation
 references:
